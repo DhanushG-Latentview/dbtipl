@@ -1,39 +1,39 @@
 -- models/marts/analytics/mart_player_match_performance.sql
 
 {{ config(
-    materialized=\'table\'
+    materialized='table'
 ) }}
 
 with batting_agg as (
-    select * from {{ ref(\'int_player_batting_match_aggregates\') }}
+    select * from {{ ref('int_player_batting_match_aggregates') }}
 ),
 
 bowling_agg as (
-    select * from {{ ref(\'int_player_bowling_match_aggregates\') }}
+    select * from {{ ref('int_player_bowling_match_aggregates') }}
 ),
 
 matches as (
-    select * from {{ ref(\'dim_matches\') }}
+    select * from {{ ref('dim_matches') }}
 ),
 
 teams as (
-    select * from {{ ref(\'dim_teams\') }}
+    select * from {{ ref('dim_teams') }}
 ),
 
 players as (
-    select * from {{ ref(\'dim_players\') }}
+    select * from {{ ref('dim_players') }}
 ),
 
 events as (
-    select * from {{ ref(\'dim_events\') }}
+    select * from {{ ref('dim_events') }}
 ),
 
 venues as (
-    select * from {{ ref(\'dim_venues\') }}
+    select * from {{ ref('dim_venues') }}
 ),
 
 dates as (
-    select * from {{ ref(\'dim_dates\') }}
+    select * from {{ ref('dim_dates') }}
 ),
 
 -- Combine batting and bowling stats per player per match
