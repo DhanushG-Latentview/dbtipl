@@ -1,0 +1,22 @@
+# version: 2
+
+# sources:
+#   - name: cricket_ipl_db
+#     database: <your_database>       # optional, only if needed
+#     schema: cricket_ipl_db             # e.g. raw, public, etc.
+#     tables:
+#       - name: all_ipl_match_data
+#         description: "Raw IPL match data containing delivery-level info"
+version: 2
+
+sources:
+  - name: cricket_ipl_db
+    description: "Source database containing raw IPL match data."
+    # Use database and schema names appropriate for your target warehouse (e.g., Snowflake)
+    # It's recommended to use environment variables or dbt profiles for these.
+    database: "{{ env_var('DBT_DATABASE', 'SNOWFLAKE_LEARNING_DB') }}" 
+    schema: "{{ env_var('DBT_SCHEMA_RAW', 'CRICKET_IPL_DB') }}" 
+    tables:
+      - name: all_ipl_match_data # Assuming this is the raw table name based on reference content
+        description: "Raw table containing detailed data for all IPL matches, including match info and delivery details."
+        # Opt
